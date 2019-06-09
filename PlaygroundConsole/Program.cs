@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace PlaygroundConsole
 {
@@ -9,10 +6,21 @@ namespace PlaygroundConsole
     {
         static void Main(string[] args)
         {
-            //PlayThreading.Run();
-            PlayMultiThreadingSet.Run();
+            try
+            {
+                Console.WriteLine($"--->{System.Threading.Thread.CurrentThread.ManagedThreadId}, Main() enter");
 
-            Console.WriteLine($"--->{System.Threading.Thread.CurrentThread.ManagedThreadId}, main thread end");
+                PlayThreading.Run();
+                //PlayMultiThreadingSet.Run();
+
+                Console.WriteLine($"--->{System.Threading.Thread.CurrentThread.ManagedThreadId}, Main() exit");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"--->{System.Threading.Thread.CurrentThread.ManagedThreadId}, Main() error: {ex}");
+            }
+
             Console.ReadLine();
         }
     }
